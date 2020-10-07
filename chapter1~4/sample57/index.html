@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <p>{{ message }}</p>
+    <p>{{ name }}</p>
+    <p>{{ myData }}</p>
+    <button @click="message = 'ボタンから変更'">変更</button>
+  </div>
+  <div id="app2"></div>
+
+  <script src="../../vue.js"></script>
+  <script>
+    var data = {
+      message: 'こんにちは',
+      name: 'よしぴー',
+    }
+
+    var vm = new Vue({
+      data: data,
+      computed: {
+        myData: function() {
+          return this.$data;
+        }
+      }
+    });
+    vm.$mount('#app')
+
+    var vm2  = new Vue ({
+      data: {
+        name: 'よしぴー'
+      },
+      //基本的には使わない
+      template: '<h1>こんにちは、{{ name }}</h1>',
+    }).$mount("#app2");
+
+  </script>
+</body>
+</html>
